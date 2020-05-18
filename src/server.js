@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
+const auth = require('./routes/auth')
 
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get('env')}`);
@@ -39,14 +40,6 @@ app.use(logger);
 
 
 console.log('server runing on port 3000')
-app.post('/api/authenticate', function (req, res) {
-    console.log('req',req.body.email);
-    console.log(req.body.password === '1234')
-    if(req.body.email === 'test@domain.com' && req.body.password === '1234'){
-        res.send(true)
-    } else {
-        return res.send(false)
-    };
-});
+app.use('/api', auth);
 
 app.listen(3000);
