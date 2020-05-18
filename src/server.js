@@ -1,12 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
+const logger = require('./module/logger')
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+//Help secure your apps by setting various HTTP headers.
+app.use(helmet());
+
+//for logging the req
+app.use(morgan('tiny'))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+//using a created middleware
+app.use(logger);
+
+
 
 console.log('server runing on port 3000')
 app.post('/api/authenticate', function (req, res) {
