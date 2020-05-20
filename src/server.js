@@ -8,10 +8,15 @@ const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 const auth = require('./routes/auth');
-const users = require('./model/user');
+const users = require('./routes/users.route');
 
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get('env')}`);
+
+if(!config.get('jwtPrivateKey')){
+    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+    process.exit(1);
+};
 
 //Help secure your apps by setting various HTTP headers.
 app.use(helmet());
@@ -41,7 +46,7 @@ app.use(logger);
 
 
 console.log('server runing on port 3000')
-app.use('/api', auth);
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 
 app.listen(3000);

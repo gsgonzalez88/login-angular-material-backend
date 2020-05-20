@@ -1,0 +1,7 @@
+{
+    "name": "backend custom",
+    "mail": {
+        "host": "custom-mail-server"
+    },
+    "jwtPrivateKey": "login_jwtPrivateKey"
+}

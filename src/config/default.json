@@ -1,3 +1,6 @@
 {
-    "name": "login backend app"
+    "name": "backend default",
+    "mail": {
+        "host": "default-mail-server"
+    }    
 }

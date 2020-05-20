@@ -2,5 +2,6 @@
     "name": "backend development",
     "mail": {
         "host": "dev-mail-server"
-    }
+    },
+    "jwtPrivateKey": "login_jwtPrivateKey"
 }
