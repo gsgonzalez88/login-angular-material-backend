@@ -41,7 +41,7 @@ app.use(logger);
 
 
 console.log('server runing on port 3000')
-app.use('/api', auth);
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 
 app.listen(3000);
