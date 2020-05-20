@@ -7,7 +7,8 @@ const morgan = require('morgan');
 const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
-const auth = require('./routes/auth')
+const auth = require('./routes/auth');
+const users = require('./model/user');
 
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get('env')}`);
@@ -41,5 +42,6 @@ app.use(logger);
 
 console.log('server runing on port 3000')
 app.use('/api', auth);
+app.use('/api/users', users);
 
 app.listen(3000);
