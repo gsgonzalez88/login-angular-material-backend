@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const User = mongoose.model('User', new mongoose.Schema({
     name: {
@@ -21,7 +22,7 @@ const User = mongoose.model('User', new mongoose.Schema({
         minlength: 5,
         maxlength: 1024        
     }
-}));
+}).plugin(uniqueValidator));
 
 function validateUser(User){
     const schema = {
@@ -32,6 +33,8 @@ function validateUser(User){
 
     return Joi.validate(user, schema);
 }
+
+
 
 exports.User = User;
 exports.validate = validateUser;

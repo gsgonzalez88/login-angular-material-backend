@@ -62,6 +62,6 @@ app.get('/api/private', checkJwt, function(req, res) {
 
 console.log('server runing on port 3000')
 app.use('/api/auth', auth);
-app.use('/api/users', users);
+app.use('/api/user', users);
 
 app.listen(3000);
