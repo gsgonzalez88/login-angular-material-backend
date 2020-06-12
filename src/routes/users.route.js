@@ -23,5 +23,22 @@ router.post('/', async(req, res) => {
     res.send(_.pick(user,['name', 'email']));
 })
 
+router.post('/signup', (req, res, next) => {
+    const  user = new User({
+        email: req.body.email,
+        password: req.body.password
+    })
+})
+
+router.post('/signin', (req, res, next) => {
+    //check if the email exist
+    if(req.body.email === "test@test.com"){
+        if(req.body.password === "1234"){
+            return res.status(401).json({
+                message: "auth success"
+            })
+        }
+    }
+})
 
 module.exports = router;
